@@ -35,7 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
-
+config/jars/
+jars/
 temp/
 *.class
 .idea/

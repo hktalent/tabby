@@ -10,6 +10,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
@@ -42,6 +43,7 @@ public class FileUtils {
             }else if(filename.endsWith(".war")){
                 paths.putAll(unpackWarOrJarFiles(path, filename));
             }else if(filename.endsWith(".jar")){
+                System.out.println("load " + filename);
                 if(checkFatJar && isFatJar(path)){
                     paths.putAll(unpackWarOrJarFiles(path, filename));
                 }else{
@@ -56,6 +58,7 @@ public class FileUtils {
                     String fileMd5 = FileUtils.getFileMD5(filename);
                     if(filename.endsWith(".jar")){
                         if(checkFatJar && isFatJar(path)){
+                            System.out.println("load " + filename);
                             paths.putAll(unpackWarOrJarFiles(path, filename));
                         }else{
                             paths.put(fileMd5, path.toAbsolutePath().toString());
@@ -81,20 +84,21 @@ public class FileUtils {
      * @return
      */
     public static boolean isFatJar(Path path){
-        String file = path.toAbsolutePath().toString();
-        try {
-            JarFile jarFile = new JarFile(path.toFile());
-            if(jarFile.getEntry("WEB-INF") != null
-                    || jarFile.getEntry("BOOT-INF") != null){
-                return true;
-            }else{
-                return false;
-            }
-        }
-        catch (Exception e) {
-            log.error("Something error with func.dealFatJar <{}>, just add this jar", file);
-            return false;
-        }
+        return true;
+//        String file = path.toAbsolutePath().toString();
+//        try {
+//            JarFile jarFile = new JarFile(path.toFile());
+//            if(jarFile.getEntry("WEB-INF") != null
+//                    || jarFile.getEntry("BOOT-INF") != null){
+//                return true;
+//            }else{
+//                return false;
+//            }
+//        }
+//        catch (Exception e) {
+//            log.error("Something error with func.dealFatJar <{}>, just add this jar", file);
+//            return false;
+//        }
     }
 
     public static Map<String, String> unpackWarOrJarFiles(Path path, String filename) throws IOException {

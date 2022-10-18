@@ -18,6 +18,12 @@ Note: Welcome to new a discussion at [discussions](https://github.com/wh1t3p1g/t
 
 ## #1 使用方法
 
+### How build
+```
+./gradlew bootJar       
+fdupes -d  -N -r . jars
+```
+
 使用Tabby需要有以下环境：
 - JDK8的环境
 - 可用的Neo4j图数据库 [Neo4j环境配置](https://github.com/wh1t3p1g/tabby/wiki/Neo4j%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE)
