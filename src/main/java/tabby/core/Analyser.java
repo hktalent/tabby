@@ -91,7 +91,8 @@ public class Analyser {
         try{
             SootConfiguration.initSootOption();
             long start = System.nanoTime();
-            addBasicClasses();
+            addBasicClasses(); // 添加 基础类信息，处理找不到类的bug
+
             // set class paths
             Scene.v().setSootClassPath(String.join(File.pathSeparator, new HashSet<>(classpaths)));
             // get target filepath

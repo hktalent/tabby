@@ -3,6 +3,7 @@ package tabby.core.container;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import mtx.toGoIndex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import soot.Scene;
@@ -70,43 +71,50 @@ public class DataContainer {
                 if(!savedClassRefs.isEmpty()){
                     List<ClassReference> list = new ArrayList<>(savedClassRefs.values());
                     savedClassRefs.clear();
-                    classRefService.save(list);
+                    toGoIndex.Save2GoIndex(list);
+//                    classRefService.save(list);
                 }
                 break;
             case "method":
                 if(!savedMethodRefs.isEmpty()){
                     List<MethodReference> list = new ArrayList<>(savedMethodRefs.values());
                     savedMethodRefs.clear();
-                    methodRefService.save(list);
+                    toGoIndex.Save2GoIndex(list);
+//                    methodRefService.save(list);
                 }
                 break;
             case "has":
                 if(!savedHasNodes.isEmpty()){
-                    relationshipsService.saveAllHasEdges(savedHasNodes);
+                    toGoIndex.Save2GoIndex(savedHasNodes);
+//                    relationshipsService.saveAllHasEdges(savedHasNodes);
                     savedHasNodes.clear();
                 }
                 break;
             case "call":
                 if(!savedCallNodes.isEmpty()){
-                    relationshipsService.saveAllCallEdges(savedCallNodes);
+                    toGoIndex.Save2GoIndex(savedCallNodes);
+//                    relationshipsService.saveAllCallEdges(savedCallNodes);
                     savedCallNodes.clear();
                 }
                 break;
             case "extend":
                 if(!savedExtendNodes.isEmpty()){
-                    relationshipsService.saveAllExtendEdges(savedExtendNodes);
+                    toGoIndex.Save2GoIndex(savedExtendNodes);
+//                    relationshipsService.saveAllExtendEdges(savedExtendNodes);
                     savedExtendNodes.clear();
                 }
                 break;
             case "interfaces":
                 if(!savedInterfacesNodes.isEmpty()){
-                    relationshipsService.saveAllInterfacesEdges(savedInterfacesNodes);
+                    toGoIndex.Save2GoIndex(savedInterfacesNodes);
+//                    relationshipsService.saveAllInterfacesEdges(savedInterfacesNodes);
                     savedInterfacesNodes.clear();
                 }
                 break;
             case "alias":
                 if(!savedAliasNodes.isEmpty()){
-                    relationshipsService.saveAllAliasEdges(savedAliasNodes);
+                    toGoIndex.Save2GoIndex(savedAliasNodes);
+//                    relationshipsService.saveAllAliasEdges(savedAliasNodes);
                     savedAliasNodes.clear();
                 }
                 break;
